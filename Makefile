@@ -48,9 +48,10 @@ docker-run: docker-build
 	docker run -v $(PWD)/data:/data ip-counter /data/input.txt 14
 
 # Generate test data and run in Docker
-docker-test: docker-build build-generator
+docker-test: docker-build
 	mkdir -p data
-	./generate-test 1000000 0.5 data/input.txt
+	docker run --rm -v $(PWD):/app -v $(PWD)/data:/data -w /app golang:1.23-alpine sh -c \
+		"go build -o /tmp/generate-test generate_test_data.go && /tmp/generate-test 1000000 0.5 /data/input.txt"
 	docker run -v $(PWD)/data:/data ip-counter /data/input.txt 14
 
 # Clean build artifacts and test files

@@ -57,6 +57,6 @@ go build -o ip-counter main.go
 ### Docker
 ```bash
 docker build -t ip-counter .
-docker run -v $(pwd)/data:/data ip-counter /data/ips.txt 14 --parallel --workers 8
+docker run -v $(PWD)/data:/data ip-counter /data/ip_addresses 14 --parallel --workers 8
 ```
 
