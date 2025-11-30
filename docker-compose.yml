@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  ip-counter:
+    build: .
+    image: ip-counter:latest
+    volumes:
+      - ./data:/data
+    command: ["/data/input.txt", "14"]

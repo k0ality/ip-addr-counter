@@ -1,0 +1,6 @@
+# Binaries
+ip-counter
+generate-test
+
+# Test data files
+data/
