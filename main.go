@@ -168,10 +168,15 @@ func processFileChunk(filename string, startPos, endPos int64, precision uint8, 
 
 	localCount := uint64(0)
 
-	for scanner.Scan() && currentPos < endPos {
+	for scanner.Scan() {
+		lineStart := currentPos
 		line := scanner.Text()
 		lineLen := int64(len(line)) + 1
 		currentPos += lineLen
+
+		if lineStart >= endPos {
+			break
+		}
 
 		line = strings.TrimSpace(line)
 		if line == "" {
